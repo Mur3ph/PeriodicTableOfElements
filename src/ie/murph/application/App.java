@@ -1,16 +1,80 @@
 package ie.murph.application;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 import ie.murph.model.ReadingElements;
 
 public class App {
 
+	private static final Scanner M_SCANNER = new Scanner(System.in);
 	public static void main(String[] args)
 	{
+		Map<Integer, String> elements = new HashMap<Integer, String>();
+		elements.put(0, "Atomic number");
+		elements.put(1, "Element name");
+		elements.put(2, "Atomic mass in au or g/mol");
+		elements.put(3, "CPK color in RRGGBB hex format");
+		elements.put(4, "Electronic configuration");
+		elements.put(5, "Electronegativity in Pauling");
+		elements.put(6, "Atomic radius in pm");
+		elements.put(7, "Ion radius in pm");
+		elements.put(8, "Van der Waals radius in pm");
+		elements.put(9, "IE-1 in kJ/mol");
+		elements.put(10, "EA in kJ/mol");
+		elements.put(11, "Oxidation states");
+		elements.put(12, "Standard state");
+		elements.put(13, "Bonding type");
+		elements.put(14, "Melting point in K");
+		elements.put(15, "Boiling point in K");
+		elements.put(16, "Density in g/mL");
+		elements.put(17, "Metal or nonmetal?");
+		elements.put(18, "Year discovered");
+		
+		//Print headings data from Map to allow user to choose what they want from the periodic table
+		System.out.println(" *** Headings of data *** ");
+		elements.forEach((key, value) -> System.out.println(key + " : " + value));
+		
+		//Get user input
+		System.out.println("Enter the number: ");
+		int number = M_SCANNER.nextInt();
+		
+		System.out.println("");
+		System.out.println(" *** Periodic elements data *** ");
 		ReadingElements read = new ReadingElements();
-		List<String> list1 = read.readIndividualElementsFromFile();
-		List<List<String>> list2 = read.readAllElementsFromFile();
-		list2.forEach(System.out::println);
+		
+		// Get one column of data
+		List<String> list1 = read.readIndividualElementsFromFile(number);
+		list1.forEach(System.out::println);
+		
+		//Run the search application again ?
+		askToContinue();
+		
+		//Get a list of list of data
+		System.out.println("");
+//		List<List<String>> list2 = read.readAllElementsFromFile();
+//		list2.forEach(System.out::println);
+	}
+	
+	// Method to ask the user if they want to try again.
+		public static void askToContinue()
+		{
+			System.out.println("Do you want to run it again: (y/n)");
+			
+			String s_continue = M_SCANNER.nextLine();
+			if(s_continue.equalsIgnoreCase("y") || s_continue.equalsIgnoreCase("yes"))
+			{
+				// Reseting and Starting again..
+				main(new String[0]);
+			}
+			else if (s_continue.equalsIgnoreCase("n") || s_continue.equalsIgnoreCase("no"))
+			{
+				System.out.println("Good bye!");
+				System.exit(0);
+			}
+			else
+				askToContinue();
 	}
 }

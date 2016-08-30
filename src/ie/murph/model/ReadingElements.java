@@ -25,12 +25,12 @@ public class ReadingElements {
 		return null;
 	}
 	
-	public List<String> readIndividualElementsFromFile()
+	public List<String> readIndividualElementsFromFile(int number)
 	{
 		try (Stream<String> stream = Files.lines(Paths.get("File/periodic-table-of-elements.csv"),Charset.defaultCharset())) 
 		{
             //stream.forEach(System.out::println);
-			return putDataIntoList(stream);
+			return putDataIntoList(stream, number);
 		} catch (IOException ex) 
 		{
 	        System.out.println("Error: " + ex.getMessage());
@@ -48,12 +48,12 @@ public class ReadingElements {
 		return list;
 	}
 	
-	private List<String> putDataIntoList(Stream<String> stream)
+	private List<String> putDataIntoList(Stream<String> stream, int number)
 	{
 		List<String> list = new ArrayList<>();		
 		list = stream
 			    .map(line -> Arrays.asList(line.split(","))) // This without the below line will get all the data in a list of lists
-			    .map(lists -> {String movie=lists.get(0).trim();return movie;}) //This gets a certain data in whatever position we want 
+			    .map(lists -> {String movie=lists.get(number).trim();return movie;}) //This gets a certain data in whatever position we want 
 			    .collect(Collectors.toList());	
 //		list.forEach(System.out::println);
 		return list;
