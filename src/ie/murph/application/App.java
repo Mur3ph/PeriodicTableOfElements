@@ -45,9 +45,15 @@ public class App {
 		System.out.println(" *** Periodic elements data *** ");
 		ReadingElements read = new ReadingElements();
 		
-		// Get one column of data
+		// Get name of elements and one column of data from user input choice
+		List<String> listOfElementNames = read.readIndividualElementsFromFile(2);
 		List<String> list1 = read.readIndividualElementsFromFile(number);
-		list1.forEach(System.out::println);
+		//list1.forEach(System.out::println);
+		
+		Map<String, String> mapOfListedData = listsToMap(listOfElementNames, list1);
+		mapOfListedData.forEach((key, value) -> {
+		    System.out.println("Element: " + key + " : Attribute value: " + value);
+		});
 		
 		//Run the search application again ?
 		askToContinue();
@@ -59,7 +65,7 @@ public class App {
 	}
 	
 	// Method to ask the user if they want to try again.
-	public static void askToContinue()
+	private static void askToContinue()
 	{
 		System.out.println("Do you want to run it again: (y/n)");
 		String s_continue = M_SCANNER.nextLine();
@@ -76,4 +82,14 @@ public class App {
 		else
 			askToContinue();
 	}
+	
+	private static Map<String, String> listsToMap(List<String> keys, List<String> values) {
+	    // check preconditions - sizes
+	    Map<String, String> map = new HashMap<>();
+	    for ( int i = 0; i < keys.size(); i++) {
+	        map.put(keys.get(i), values.get(i));
+	    }
+		return map;
+	}
+	
 }

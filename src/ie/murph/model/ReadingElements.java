@@ -53,7 +53,9 @@ public class ReadingElements {
 		List<String> list = new ArrayList<>();		
 		list = stream
 			    .map(line -> Arrays.asList(line.split(","))) // This without the below line will get all the data in a list of lists
-			    .map(lists -> {String movie=lists.get(number).trim();return movie;}) //This gets a certain data in whatever position we want 
+			    
+			    .map(lists -> {String userChoosesData=lists.get(number).trim();//This gets a certain data in whatever position we want 
+			    return userChoosesData;}) 
 			    .collect(Collectors.toList());	
 //		list.forEach(System.out::println);
 		return list;
