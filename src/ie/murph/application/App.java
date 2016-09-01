@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 import ie.murph.model.ReadingElements;
 
 public class App {
 
+	private static final Logger LOGGER = Logger.getLogger(App.class.getName());
 	private static final Scanner M_SCANNER = new Scanner(System.in);
 	public static void main(String[] args)
 	{
@@ -97,6 +99,7 @@ public class App {
 		elements.put(17, "Metal or nonmetal?");
 		elements.put(18, "Year discovered");
 		
+		LOGGER.info("*** Headings of data ***");
 		System.out.println(" *** Headings of data *** ");
 		elements.forEach((key, value) -> System.out.println(key + " : " + value));
 	}
