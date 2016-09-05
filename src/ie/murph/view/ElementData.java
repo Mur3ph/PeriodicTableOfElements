@@ -1,6 +1,7 @@
 package ie.murph.view;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -37,6 +38,16 @@ public class ElementData {
 		LOGGER.info("*** Headings of data ***");
 		System.out.println(" *** Headings of data *** ");
 		elements.forEach((key, value) -> System.out.println(key + " : " + value));
+	}
+	
+	//Place data from two lists into a single map, one list for keys and the other for corresponding values
+	public Map<String, String> listsToMap(List<String> keys, List<String> values) {
+	    // check preconditions - sizes
+	    Map<String, String> map = new HashMap<>();
+	    for ( int i = 0; i < keys.size(); i++) {
+	        map.put(keys.get(i), values.get(i));
+	    }
+		return map;
 	}
 	
 }

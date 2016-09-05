@@ -1,6 +1,5 @@
 package ie.murph.application;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -16,10 +15,11 @@ public class App {
 	public static void main(String[] args)
 	{
 		//Print headings data from Map to allow user to choose what they want from the periodic table
-		ElementData element = new ElementData();
-		element.getPeriodicTableDataHeadings();
+		ElementData viewElementData = new ElementData();
+		viewElementData.getPeriodicTableDataHeadings();
 		
 		//Get user input
+		System.out.println("");
 		LOGGER.info("Enter the number: ");
 		int number = M_SCANNER.nextInt();
 		
@@ -32,7 +32,7 @@ public class App {
 		List<String> list1 = read.readIndividualElementsFromFile(number);
 		//list1.forEach(System.out::println);
 		
-		Map<String, String> mapOfListedData = listsToMap(listOfElementNames, list1);
+		Map<String, String> mapOfListedData = viewElementData.listsToMap(listOfElementNames, list1);
 		mapOfListedData.forEach((key, value) -> {
 			LOGGER.info(" Element: " + key + " : Attribute value: " + value);
 		});
@@ -69,16 +69,6 @@ public class App {
 			LOGGER.info("Do you want to run it again: (y/n)");
 			askToContinue();
 			
-	}
-	
-	//Place data from two lists into a single map, one list for keys and the other for corresponding values
-	private static Map<String, String> listsToMap(List<String> keys, List<String> values) {
-	    // check preconditions - sizes
-	    Map<String, String> map = new HashMap<>();
-	    for ( int i = 0; i < keys.size(); i++) {
-	        map.put(keys.get(i), values.get(i));
-	    }
-		return map;
 	}
 	
 }
