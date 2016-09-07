@@ -11,7 +11,7 @@ import ie.murph.view.ElementData;
 public class App {
 
 	private static final Logger LOGGER = Logger.getLogger(App.class.getName());
-	private static final Scanner M_SCANNER = new Scanner(System.in);
+	private static final Scanner SCANNER = new Scanner(System.in);
 	public static void main(String[] args)
 	{
 		//Print headings data from Map to allow user to choose what they want from the periodic table
@@ -21,38 +21,36 @@ public class App {
 		//Get user input
 		System.out.println("");
 		LOGGER.info("Enter the number: ");
-		int number = M_SCANNER.nextInt();
+		int userInputForElementsColumnNumberChoice = SCANNER.nextInt();
 		
 		System.out.println("");
 		LOGGER.info(" *** Periodic elements data *** ");
-		ReadingElements read = new ReadingElements();
+		ReadingElements readingElementsFromFileClass = new ReadingElements();
 		
 		// Get name of elements and one column of data from user input choice
-		List<String> listOfElementNames = read.readIndividualElementsFromFile(2);
-		List<String> list1 = read.readIndividualElementsFromFile(number);
-		//list1.forEach(System.out::println);
+		List<String> listOfElementNames = readingElementsFromFileClass.readIndividualElementsFromFile(2);
+		List<String> listOfElementsAttributesTheUserChooses = readingElementsFromFileClass.readIndividualElementsFromFile(userInputForElementsColumnNumberChoice);
 		
-		Map<String, String> mapOfListedData = viewElementData.listsToMap(listOfElementNames, list1);
+		//Add elements data to a map and then print out the data. Key: Element name and Value: User chooses
+		Map<String, String> mapOfListedData = viewElementData.listsToMap(listOfElementNames, listOfElementsAttributesTheUserChooses);
 		mapOfListedData.forEach((key, value) -> {
 			LOGGER.info(" Element: " + key + " : Attribute value: " + value);
 		});
 		
-		//Run the search application again ?
+		//Ask user to Run the search application again ?
 		askToContinue();
 		
 		//Get a list of list of data
 		System.out.println("");
-//		List<List<String>> list2 = read.readAllElementsFromFile();
-//		list2.forEach(System.out::println);
 		
 		System.exit(0);
 	}
 	
-	// Method to ask the user if they want to try again.
+	// Method to ask the user if they want to try the application again.
 	private static void askToContinue()
 	{
 		//System.out.println("Do you want to run it again: (y/n)");
-		String s_continue = M_SCANNER.nextLine();
+		String s_continue = SCANNER.nextLine();
 		if(s_continue.equalsIgnoreCase("y") || s_continue.equalsIgnoreCase("yes"))
 		{
 			// Reseting main thread and Starting again..
