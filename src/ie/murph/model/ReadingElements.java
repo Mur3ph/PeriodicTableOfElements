@@ -7,10 +7,13 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ReadingElements {
+
+	private static final Logger LOGGER = Logger.getLogger(ReadingElements.class.getName());
 
 	public List<List<String>> readAllElementsFromFile()
 	{
@@ -20,7 +23,8 @@ public class ReadingElements {
 			return putDataIntoListOfLists(stream);
 		} catch (IOException ex) 
 		{
-	        System.out.println("Error: " + ex.getMessage());
+	        System.out.println("");
+	        LOGGER.warning("Error: " + ex.getMessage() + " +readAllElementsFromFile()");
 		} 
 		return null;
 	}
@@ -33,7 +37,8 @@ public class ReadingElements {
 			return putDataIntoList(stream, number);
 		} catch (IOException ex) 
 		{
-	        System.out.println("Error: " + ex.getMessage());
+			System.out.println("");
+	        LOGGER.warning("Error: " + ex.getMessage() + " +readIndividualElementsFromFile()");
 		} 
 		return null;
 	}

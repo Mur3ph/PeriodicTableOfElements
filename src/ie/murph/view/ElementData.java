@@ -5,11 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import ie.murph.application.App;
-
 public class ElementData {
 
-	private static final Logger LOGGER = Logger.getLogger(App.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(ElementData.class.getName());
 	
 	//Print headings data from Map to allow user to choose what they want from the periodic table
 	public void getPeriodicTableDataHeadings()
@@ -35,8 +33,9 @@ public class ElementData {
 		elements.put(17, "Metal or nonmetal?");
 		elements.put(18, "Year discovered");
 		
+		System.out.println(" ");
 		LOGGER.info("*** Headings of data ***");
-		System.out.println(" *** Headings of data *** ");
+		System.out.println(" ");
 		elements.forEach((key, value) -> System.out.println(key + " : " + value));
 	}
 	
