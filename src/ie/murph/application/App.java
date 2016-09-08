@@ -5,7 +5,8 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-import ie.murph.model.ReadingElements;
+import ie.murph.model.PlaceElementsIntoDataStructures;
+import ie.murph.model.ReadingElementsFromFile;
 import ie.murph.view.ElementData;
 
 public class App {
@@ -25,7 +26,8 @@ public class App {
 		
 		System.out.println("");
 		LOGGER.info(" *** Periodic elements data *** ");
-		ReadingElements readingElementsFromFileClass = new ReadingElements();
+		PlaceElementsIntoDataStructures placeElementsIntoDataStructures = new PlaceElementsIntoDataStructures();
+		ReadingElementsFromFile readingElementsFromFileClass = new ReadingElementsFromFile(placeElementsIntoDataStructures);
 		
 		// Get name of elements and one column of data from user input choice
 		List<String> listOfElementNames = readingElementsFromFileClass.readIndividualElementsFromFile(2);
