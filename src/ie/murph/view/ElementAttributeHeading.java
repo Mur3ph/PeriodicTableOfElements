@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class ElementData {
+public class ElementAttributeHeading {
 
-	private static final Logger LOGGER = Logger.getLogger(ElementData.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(ElementAttributeHeading.class.getName());
 	
 	//Print headings data from Map to allow user to choose what they want from the periodic table
-	public void getPeriodicTableDataHeadings()
+	public void getPeriodicTableOfElementsColumnHeadingAttributes()
 	{
 		Map<Integer, String> elements = new HashMap<Integer, String>();
 		elements.put(0, "Atomic number");
@@ -37,16 +37,5 @@ public class ElementData {
 		LOGGER.info("*** Headings of data ***");
 		System.out.println(" ");
 		elements.forEach((key, value) -> System.out.println(key + " : " + value));
-	}
-	
-	//Place data from two lists into a single map, one list for keys and the other for corresponding values
-	public Map<String, String> listsToMap(List<String> keys, List<String> values) {
-	    // check preconditions - sizes
-	    Map<String, String> map = new HashMap<>();
-	    for ( int i = 0; i < keys.size(); i++) {
-	        map.put(keys.get(i), values.get(i));
-	    }
-		return map;
-	}
-	
+	}	
 }

@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 import ie.murph.model.PlaceElementsIntoDataStructures;
 import ie.murph.model.ReadingElementsFromFile;
-import ie.murph.view.ElementData;
+import ie.murph.view.ElementAttributeHeading;
 
 public class App {
 
@@ -16,22 +16,22 @@ public class App {
 	public static void main(String[] args)
 	{
 		//Print headings data from Map to allow user to choose what they want from the periodic table
-		ElementData viewElementData = new ElementData();
-		viewElementData.getPeriodicTableDataHeadings();
+		ElementAttributeHeading elementAttributeHeading = new ElementAttributeHeading();
+		elementAttributeHeading.getPeriodicTableOfElementsColumnHeadingAttributes();
 		
 		//Get user input
 		System.out.println("");
 		LOGGER.info("Enter the number: ");
-		int userInputForElementsColumnNumberChoice = SCANNER.nextInt();
+		int userInputToChooseAttributeOfElement = SCANNER.nextInt();
 		
 		System.out.println("");
 		LOGGER.info(" *** Periodic elements data *** ");
-		ReadingElementsFromFile readingElementsFromFileClass = new ReadingElementsFromFile();
-		PlaceElementsIntoDataStructures placeElementsIntoDataStructures = new PlaceElementsIntoDataStructures(readingElementsFromFileClass);
+		ReadingElementsFromFile readingElementsFromFile = new ReadingElementsFromFile();
+		PlaceElementsIntoDataStructures placeElementsIntoDataStructures = new PlaceElementsIntoDataStructures(readingElementsFromFile);
 		
 		// Get name of elements and one column of data from user input choice
 		List<String> listOfElementNames = placeElementsIntoDataStructures.putDataIntoList(2);
-		List<String> listOfElementsAttributesTheUserChooses = placeElementsIntoDataStructures.putDataIntoList(userInputForElementsColumnNumberChoice);
+		List<String> listOfElementsAttributesTheUserChooses = placeElementsIntoDataStructures.putDataIntoList(userInputToChooseAttributeOfElement);
 		
 		//Add elements data to a map and then print out the data. Key: Element name and Value: User chooses
 		Map<String, String> mapOfListedData = placeElementsIntoDataStructures.putTwoListsIntoMap(listOfElementNames, listOfElementsAttributesTheUserChooses);
