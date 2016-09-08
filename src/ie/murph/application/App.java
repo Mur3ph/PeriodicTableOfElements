@@ -26,15 +26,15 @@ public class App {
 		
 		System.out.println("");
 		LOGGER.info(" *** Periodic elements data *** ");
-		PlaceElementsIntoDataStructures placeElementsIntoDataStructures = new PlaceElementsIntoDataStructures();
-		ReadingElementsFromFile readingElementsFromFileClass = new ReadingElementsFromFile(placeElementsIntoDataStructures);
+		ReadingElementsFromFile readingElementsFromFileClass = new ReadingElementsFromFile();
+		PlaceElementsIntoDataStructures placeElementsIntoDataStructures = new PlaceElementsIntoDataStructures(readingElementsFromFileClass);
 		
 		// Get name of elements and one column of data from user input choice
-		List<String> listOfElementNames = readingElementsFromFileClass.readIndividualElementsFromFile(2);
-		List<String> listOfElementsAttributesTheUserChooses = readingElementsFromFileClass.readIndividualElementsFromFile(userInputForElementsColumnNumberChoice);
+		List<String> listOfElementNames = placeElementsIntoDataStructures.putDataIntoList(2);
+		List<String> listOfElementsAttributesTheUserChooses = placeElementsIntoDataStructures.putDataIntoList(userInputForElementsColumnNumberChoice);
 		
 		//Add elements data to a map and then print out the data. Key: Element name and Value: User chooses
-		Map<String, String> mapOfListedData = viewElementData.listsToMap(listOfElementNames, listOfElementsAttributesTheUserChooses);
+		Map<String, String> mapOfListedData = placeElementsIntoDataStructures.putTwoListsIntoMap(listOfElementNames, listOfElementsAttributesTheUserChooses);
 		mapOfListedData.forEach((key, value) -> {
 			LOGGER.info(" Element: " + key + " : Attribute value: " + value);
 		});
