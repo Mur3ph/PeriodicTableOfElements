@@ -4,7 +4,7 @@
 <ol>
 	<li>Read Periodic tble of elements data from a file</li>
 	<li>Place data into lists</li>
-	<li>Allow user to search data and attributes of elements</li>
+	<li>Allow user to search all data elements with one corresponding attribute for each elements</li>
 </ol>
 
 ###### Technologies Used:
