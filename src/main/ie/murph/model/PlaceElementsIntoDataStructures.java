@@ -1,4 +1,4 @@
-package ie.murph.model;
+package main.ie.murph.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;

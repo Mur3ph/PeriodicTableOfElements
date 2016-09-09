@@ -1,4 +1,4 @@
-package ie.murph.model;
+package main.ie.murph.model;
 
 import java.io.IOException;
 import java.nio.charset.Charset;

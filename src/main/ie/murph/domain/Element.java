@@ -1,4 +1,4 @@
-package ie.murph.domain;
+package main.ie.murph.domain;
 
 public class Element {
 

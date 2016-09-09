@@ -1,4 +1,4 @@
-package ie.murph.view;
+package main.ie.murph.view;
 
 import java.util.HashMap;
 import java.util.Map;

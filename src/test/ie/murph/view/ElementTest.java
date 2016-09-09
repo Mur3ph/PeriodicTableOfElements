@@ -1,4 +1,4 @@
-package ie.murph.test;
+package test.ie.murph.view;
 
 import static org.junit.Assert.*;
 

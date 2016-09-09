@@ -1,13 +1,13 @@
-package ie.murph.application;
+package main.ie.murph.application;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-import ie.murph.model.PlaceElementsIntoDataStructures;
-import ie.murph.model.ReadingElementsFromFile;
-import ie.murph.view.ElementAttributeHeading;
+import main.ie.murph.model.PlaceElementsIntoDataStructures;
+import main.ie.murph.model.ReadingElementsFromFile;
+import main.ie.murph.view.ElementAttributeHeading;
 
 public class App {
 
