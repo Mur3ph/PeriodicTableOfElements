@@ -2,13 +2,12 @@
 
 ###### Functionality Implemented:
 <ol>
-	<li>Class to create an object for each element</li>
-	<li>File with data of all periodic table of elements</li>
-	<li>Read from file</li>
-	<li>Store data from file in a List collection</li>
+	<li>Read Periodic tble of elements data from a file</li>
+	<li>Place data into lists</li>
+	<li>Allow user to search data and attributes of elements</li>
 </ol>
 
 ###### Technologies Used:
  <ol>
-	<li>Java tools in all its glory</li>
+	<li>Java 7/8 tools in all its glory</li>
 </ol>

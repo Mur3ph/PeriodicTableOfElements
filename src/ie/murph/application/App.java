@@ -13,6 +13,7 @@ public class App {
 
 	private static final Logger LOGGER = Logger.getLogger(App.class.getName());
 	private static final Scanner SCANNER = new Scanner(System.in);
+	
 	public static void main(String[] args)
 	{
 		//Print headings data from Map to allow user to choose what they want from the periodic table
