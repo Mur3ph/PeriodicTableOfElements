@@ -40,6 +40,10 @@ public class App {
 			LOGGER.info(" Element: " + key + " : Attribute value: " + value);
 		});
 		
+		// Print just one element with all it's attributes
+		System.out.println("");
+		readingElementsFromFile.readOneRowOfElementDataFromFile("Li");
+		
 		//Ask user to Run the search application again ?
 		askToContinue();
 		

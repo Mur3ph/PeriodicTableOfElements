@@ -22,7 +22,7 @@ public class PlaceElementsIntoDataStructures {
 	{
 		LOGGER.info("+putDataIntoList()");
 		List<String> targetList = new ArrayList<>();
-		List<String> list = m_readingElementsFromFile.readAllElementsFromFileTest();
+		List<String> list = m_readingElementsFromFile.readAllElementsFromFile();
 		targetList = list.stream()
 			    .map(line -> Arrays.asList(line.split(","))) // This without the below line will get all the data in a list of lists
 			    .map(lists -> {String userChoosesData=lists.get(number).trim();//This gets a certain data in whatever position we want 
@@ -35,7 +35,7 @@ public class PlaceElementsIntoDataStructures {
 	{
 		LOGGER.info("+putDataIntoListOfLists()");
 		List<List<String>> targetList = new ArrayList<>();	
-		List<String> list = m_readingElementsFromFile.readAllElementsFromFileTest();
+		List<String> list = m_readingElementsFromFile.readAllElementsFromFile();
 		
 		targetList = list.stream()
 			    .map(line -> Arrays.asList(line.split(","))) // This without the below line will get all the data in a list of lists

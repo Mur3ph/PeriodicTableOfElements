@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -16,9 +17,9 @@ public class ReadingElementsFromFile {
 	
 	public ReadingElementsFromFile(){}
 	
-	public List<String> readAllElementsFromFileTest()
+	public List<String> readAllElementsFromFile()
 	{
-		LOGGER.info("+readAllElementsFromFileTest()");
+		LOGGER.info("+readAllElementsFromFile()");
 		try (Stream<String> stream = Files.lines(Paths.get(FILENAME),Charset.defaultCharset())) 
 		{
             //stream.forEach(System.out::println);
@@ -30,6 +31,24 @@ public class ReadingElementsFromFile {
 	        LOGGER.warning("Error: " + ex.getMessage() + " +readAllElementsFromFile()");
 		} 
 		return null;
+	}
+	
+	public void readOneRowOfElementDataFromFile(String row)
+	{
+		LOGGER.info("+readOneRowOfElementDataFromFile()");
+		List<String> list = new ArrayList<>();
+		try (Stream<String> stream = Files.lines(Paths.get(FILENAME),Charset.defaultCharset())) 
+		{
+            //stream.forEach(System.out::println);
+			list = stream
+					.filter(line -> line.contains(row))
+					.collect(Collectors.toList());
+			list.forEach(System.out::println);
+		} catch (IOException ex) 
+		{
+	        System.out.println("");
+	        LOGGER.warning("Error: " + ex.getMessage() + " +readAllElementsFromFile()");
+		} 
 	}
 	
 }
