@@ -33,7 +33,7 @@ public class ReadingElementsFromFile {
 		return null;
 	}
 	
-	public void readOneRowOfElementDataFromFile(String row)
+	public void readOneRowOfElementDataFromFile(String elementsSymbol)
 	{
 		LOGGER.info("+readOneRowOfElementDataFromFile()");
 		List<String> list = new ArrayList<>();
@@ -41,7 +41,7 @@ public class ReadingElementsFromFile {
 		{
             //stream.forEach(System.out::println);
 			list = stream
-					.filter(line -> line.contains(row))
+					.filter(line -> line.contains(elementsSymbol))
 					.collect(Collectors.toList());
 			list.forEach(System.out::println);
 		} catch (IOException ex) 

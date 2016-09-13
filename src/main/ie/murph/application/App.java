@@ -42,7 +42,9 @@ public class App {
 		
 		// Print just one element with all it's attributes
 		System.out.println("");
-		readingElementsFromFile.readOneRowOfElementDataFromFile("Li");
+		System.out.println("Enter Symbol of element: ");
+		String elementSymbol = SCANNER.next();
+		readingElementsFromFile.readOneRowOfElementDataFromFile(elementSymbol);
 		
 		//Ask user to Run the search application again ?
 		askToContinue();
