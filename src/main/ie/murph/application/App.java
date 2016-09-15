@@ -25,26 +25,30 @@ public class App {
 		LOGGER.info("Enter the number: ");
 		int userInputToChooseAttributeOfElement = SCANNER.nextInt();
 		
-		System.out.println("");
-		LOGGER.info(" *** Periodic elements data *** ");
-		ReadingElementsFromFile readingElementsFromFile = new ReadingElementsFromFile();
-		PlaceElementsIntoDataStructures placeElementsIntoDataStructures = new PlaceElementsIntoDataStructures(readingElementsFromFile);
-		
-		// Get name of elements and one column of data from user input choice
-		List<String> listOfElementNames = placeElementsIntoDataStructures.putDataIntoList(2);
-		List<String> listOfElementsAttributesTheUserChooses = placeElementsIntoDataStructures.putDataIntoList(userInputToChooseAttributeOfElement);
-		
-		//Add elements data to a map and then print out the data. Key: Element name and Value: User chooses
-		Map<String, String> mapOfListedData = placeElementsIntoDataStructures.putTwoListsIntoMap(listOfElementNames, listOfElementsAttributesTheUserChooses);
-		mapOfListedData.forEach((key, value) -> {
-			LOGGER.info(" Element: " + key + " : Attribute value: " + value);
-		});
-		
 		// Print just one element with all it's attributes
 		System.out.println("");
 		System.out.println("Enter Symbol of element: ");
 		String elementSymbol = SCANNER.next();
-		readingElementsFromFile.readOneRowOfElementDataFromFile(elementSymbol);
+		
+		System.out.println("");
+		LOGGER.info(" *** Periodic elements data *** ");
+		ReadingElementsFromFile readingElementsFromFile = new ReadingElementsFromFile();
+		PlaceElementsIntoDataStructures placeElementsIntoDataStructuresOne = new PlaceElementsIntoDataStructures(readingElementsFromFile.readAllElementsFromFile());
+		//PlaceElementsIntoDataStructures placeElementsIntoDataStructuresTwo = new PlaceElementsIntoDataStructures(readingElementsFromFile.readOneRowOfElementDataFromFile(elementSymbol));
+
+		
+		// Get name of elements and one column of data from user input choice
+		List<String> listOfElementNames = placeElementsIntoDataStructuresOne.putDataIntoList(2);
+		List<String> listOfElementsAttributesTheUserChooses = placeElementsIntoDataStructuresOne.putDataIntoList(userInputToChooseAttributeOfElement);
+		//List<String> x = placeElementsIntoDataStructuresTwo.putDataIntoList();
+		
+		//Add elements data to a map and then print out the data. Key: Element name and Value: User chooses
+		Map<String, String> mapOfListedData = placeElementsIntoDataStructuresOne.putTwoListsIntoMap(listOfElementNames, listOfElementsAttributesTheUserChooses);
+		mapOfListedData.forEach((key, value) -> {
+			LOGGER.info(" Element: " + key + " : Attribute value: " + value);
+		});
+				
+		//x.forEach(System.out::println);
 		
 		//Ask user to Run the search application again ?
 		askToContinue();

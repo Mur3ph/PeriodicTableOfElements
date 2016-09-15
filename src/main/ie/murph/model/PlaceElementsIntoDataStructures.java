@@ -11,18 +11,18 @@ import java.util.stream.Collectors;
 public class PlaceElementsIntoDataStructures {
 	
 	private static final Logger LOGGER = Logger.getLogger(PlaceElementsIntoDataStructures.class.getName());
-	private ReadingElementsFromFile m_readingElementsFromFile = new ReadingElementsFromFile();
+	private List<String> m_readingElementsFromFileList;
 	
-	public PlaceElementsIntoDataStructures(ReadingElementsFromFile readingElementsFromFile)
+	public PlaceElementsIntoDataStructures(List<String> readingElementsFromFileList)
 	{
-		this.m_readingElementsFromFile = readingElementsFromFile;
+		this.m_readingElementsFromFileList = readingElementsFromFileList;
 	}
 
 	public List<String> putDataIntoList(int number)
 	{
 		LOGGER.info("+putDataIntoList()");
 		List<String> targetList = new ArrayList<>();
-		List<String> list = m_readingElementsFromFile.readAllElementsFromFile();
+		List<String> list = m_readingElementsFromFileList;
 		targetList = list.stream()
 			    .map(line -> Arrays.asList(line.split(","))) // This without the below line will get all the data in a list of lists
 			    .map(lists -> {String userChoosesData=lists.get(number).trim();//This gets a certain data in whatever position we want 
@@ -31,11 +31,21 @@ public class PlaceElementsIntoDataStructures {
 		return targetList;
 	}
 	
+	public List<String> putDataIntoList()
+	{
+		LOGGER.info("+putDataIntoList()");
+		List<String> targetList = new ArrayList<>();
+		List<String> list = m_readingElementsFromFileList;
+		targetList = (List<String>) list.stream()
+			    .map(line -> Arrays.asList(line.split(","))); // This without the below line will get all the data in a list of lists	
+		return targetList;
+	}
+	
 	public List<List<String>> putDataIntoListOfLists()
 	{
 		LOGGER.info("+putDataIntoListOfLists()");
 		List<List<String>> targetList = new ArrayList<>();	
-		List<String> list = m_readingElementsFromFile.readAllElementsFromFile();
+		List<String> list = m_readingElementsFromFileList;
 		
 		targetList = list.stream()
 			    .map(line -> Arrays.asList(line.split(","))) // This without the below line will get all the data in a list of lists

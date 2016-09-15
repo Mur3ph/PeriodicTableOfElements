@@ -33,22 +33,23 @@ public class ReadingElementsFromFile {
 		return null;
 	}
 	
-	public void readOneRowOfElementDataFromFile(String elementsSymbol)
+	public List<String> readOneRowOfElementDataFromFile(String elementsSymbol)
 	{
 		LOGGER.info("+readOneRowOfElementDataFromFile()");
 		List<String> list = new ArrayList<>();
 		try (Stream<String> stream = Files.lines(Paths.get(FILENAME),Charset.defaultCharset())) 
 		{
             //stream.forEach(System.out::println);
-			list = stream
+			return stream
 					.filter(line -> line.contains(elementsSymbol))
 					.collect(Collectors.toList());
-			list.forEach(System.out::println);
+			//list.forEach(System.out::println);
 		} catch (IOException ex) 
 		{
 	        System.out.println("");
 	        LOGGER.warning("Error: " + ex.getMessage() + " +readAllElementsFromFile()");
-		} 
+		}
+		return list; 
 	}
 	
 }
