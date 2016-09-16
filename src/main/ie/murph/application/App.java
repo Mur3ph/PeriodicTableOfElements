@@ -34,21 +34,20 @@ public class App {
 		LOGGER.info(" *** Periodic elements data *** ");
 		ReadingElementsFromFile readingElementsFromFile = new ReadingElementsFromFile();
 		PlaceElementsIntoDataStructures placeElementsIntoDataStructuresOne = new PlaceElementsIntoDataStructures(readingElementsFromFile.readAllElementsFromFile());
-		//PlaceElementsIntoDataStructures placeElementsIntoDataStructuresTwo = new PlaceElementsIntoDataStructures(readingElementsFromFile.readOneRowOfElementDataFromFile(elementSymbol));
+		PlaceElementsIntoDataStructures placeElementsIntoDataStructuresTwo = new PlaceElementsIntoDataStructures(readingElementsFromFile.readOneRowOfElementDataFromFile(elementSymbol));
 
-		
-		// Get name of elements and one column of data from user input choice
+		// Get name of elements and one column of data from user input choice and format by removing comma
 		List<String> listOfElementNames = placeElementsIntoDataStructuresOne.putDataIntoList(2);
 		List<String> listOfElementsAttributesTheUserChooses = placeElementsIntoDataStructuresOne.putDataIntoList(userInputToChooseAttributeOfElement);
-		//List<String> x = placeElementsIntoDataStructuresTwo.putDataIntoList();
 		
 		//Add elements data to a map and then print out the data. Key: Element name and Value: User chooses
 		Map<String, String> mapOfListedData = placeElementsIntoDataStructuresOne.putTwoListsIntoMap(listOfElementNames, listOfElementsAttributesTheUserChooses);
 		mapOfListedData.forEach((key, value) -> {
 			LOGGER.info(" Element: " + key + " : Attribute value: " + value);
 		});
-				
-		//x.forEach(System.out::println);
+		
+		// Get name of elements and one column of data from user input choice and no need to format by removing comma
+		placeElementsIntoDataStructuresTwo.getReadingElementsFromFileList().forEach(System.out::println);
 		
 		//Ask user to Run the search application again ?
 		askToContinue();

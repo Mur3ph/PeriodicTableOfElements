@@ -31,16 +31,6 @@ public class PlaceElementsIntoDataStructures {
 		return targetList;
 	}
 	
-	public List<String> putDataIntoList()
-	{
-		LOGGER.info("+putDataIntoList()");
-		List<String> targetList = new ArrayList<>();
-		List<String> list = m_readingElementsFromFileList;
-		targetList = (List<String>) list.stream()
-			    .map(line -> Arrays.asList(line.split(","))); // This without the below line will get all the data in a list of lists	
-		return targetList;
-	}
-	
 	public List<List<String>> putDataIntoListOfLists()
 	{
 		LOGGER.info("+putDataIntoListOfLists()");
@@ -63,6 +53,10 @@ public class PlaceElementsIntoDataStructures {
 	        map.put(keys.get(i), values.get(i));
 	    }
 		return map;
+	}
+	
+	public List<String> getReadingElementsFromFileList() {
+		return m_readingElementsFromFileList;
 	}
 	
 }
