@@ -16,6 +16,20 @@ public class App {
 	
 	public static void main(String[] args)
 	{
+		//Execute the application
+		run();
+		
+		//Ask user to Run the search application again ?
+		askToContinue();
+		
+		//Get a list of list of data
+		System.out.println("");
+		
+		System.exit(0);
+	}
+	
+	private static void run()
+	{
 		//Print headings data from Map to allow user to choose what they want from the periodic table
 		ElementAttributeHeading elementAttributeHeading = new ElementAttributeHeading();
 		elementAttributeHeading.getPeriodicTableOfElementsColumnHeadingAttributes();
@@ -37,25 +51,21 @@ public class App {
 		PlaceElementsIntoDataStructures placeElementsIntoDataStructuresTwo = new PlaceElementsIntoDataStructures(readingElementsFromFile.readOneRowOfElementDataFromFile(elementSymbol));
 
 		// Get name of elements and one column of data from user input choice and format by removing comma
+		System.out.println("");
 		List<String> listOfElementNames = placeElementsIntoDataStructuresOne.putDataIntoList(2);
 		List<String> listOfElementsAttributesTheUserChooses = placeElementsIntoDataStructuresOne.putDataIntoList(userInputToChooseAttributeOfElement);
 		
 		//Add elements data to a map and then print out the data. Key: Element name and Value: User chooses
+		System.out.println("");
 		Map<String, String> mapOfListedData = placeElementsIntoDataStructuresOne.putTwoListsIntoMap(listOfElementNames, listOfElementsAttributesTheUserChooses);
 		mapOfListedData.forEach((key, value) -> {
 			LOGGER.info(" Element: " + key + " : Attribute value: " + value);
 		});
 		
 		// Get name of elements and one column of data from user input choice and no need to format by removing comma
-		placeElementsIntoDataStructuresTwo.getReadingElementsFromFileList().forEach(System.out::println);
-		
-		//Ask user to Run the search application again ?
-		askToContinue();
-		
-		//Get a list of list of data
 		System.out.println("");
-		
-		System.exit(0);
+//		placeElementsIntoDataStructuresTwo.getReadingElementsFromFileList().forEach(System.out::println);
+		placeElementsIntoDataStructuresTwo.getReadingElementsFromFileList().forEach(myPojo -> LOGGER.info(myPojo.toString()));
 	}
 	
 	// Method to ask the user if they want to try the application again.
