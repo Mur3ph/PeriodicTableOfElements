@@ -94,7 +94,6 @@ public class App {
 	// Method to ask the user if they want to try the application again.
 	private static void askToContinue()
 	{
-		LOGGER.info("+askToContinue()");
 		//System.out.println("Do you want to run it again: (y/n)");
 		String s_continue = SCANNER.nextLine();
 		if(s_continue.equalsIgnoreCase("y") || s_continue.equalsIgnoreCase("yes"))
