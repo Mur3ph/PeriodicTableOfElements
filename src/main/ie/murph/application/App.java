@@ -16,61 +16,85 @@ public class App {
 	
 	public static void main(String[] args)
 	{
+		LOGGER.info("+main()");
+		
 		//Execute the application
 		run();
 		
 		//Ask user to Run the search application again ?
 		askToContinue();
 		
-		//Get a list of list of data
-		System.out.println("");
-		
 		System.exit(0);
 	}
 	
+	//Execute the application
 	private static void run()
 	{
+		LOGGER.info("+run()");
 		//Print headings data from Map to allow user to choose what they want from the periodic table
 		ElementAttributeHeading elementAttributeHeading = new ElementAttributeHeading();
 		elementAttributeHeading.getPeriodicTableOfElementsColumnHeadingAttributes();
 		
-		//Get user input
-		System.out.println("");
-		LOGGER.info("Enter the number: ");
-		int userInputToChooseAttributeOfElement = SCANNER.nextInt();
+		ReadingElementsFromFile readingElementsFromFile = new ReadingElementsFromFile();
 		
-		// Print just one element with all it's attributes
+		getColumnOfElementsAttributes(readingElementsFromFile);
+		
+		getRowOfElementData(readingElementsFromFile);
+		
 		System.out.println("");
-		System.out.println("Enter Symbol of element: ");
-		String elementSymbol = SCANNER.next();
+	}
+	
+	//Get user input for which column of data they want to view
+	private static void getColumnOfElementsAttributes(ReadingElementsFromFile readingElementsFromFile)
+	{
+		LOGGER.info("+getColumnOfElementsAttributes(ReadingElementsFromFile readingElementsFromFile)");
+		System.out.println("");
+		System.out.println("Enter the number of column: ");
+		int userInputToChooseAttributeOfElement = SCANNER.nextInt();
 		
 		System.out.println("");
 		LOGGER.info(" *** Periodic elements data *** ");
-		ReadingElementsFromFile readingElementsFromFile = new ReadingElementsFromFile();
-		PlaceElementsIntoDataStructures placeElementsIntoDataStructuresOne = new PlaceElementsIntoDataStructures(readingElementsFromFile.readAllElementsFromFile());
-		PlaceElementsIntoDataStructures placeElementsIntoDataStructuresTwo = new PlaceElementsIntoDataStructures(readingElementsFromFile.readOneRowOfElementDataFromFile(elementSymbol));
+		PlaceElementsIntoDataStructures placeElementsIntoDataStructures = new PlaceElementsIntoDataStructures(readingElementsFromFile.readAllElementsFromFile());
 
 		// Get name of elements and one column of data from user input choice and format by removing comma
 		System.out.println("");
-		List<String> listOfElementNames = placeElementsIntoDataStructuresOne.putDataIntoList(2);
-		List<String> listOfElementsAttributesTheUserChooses = placeElementsIntoDataStructuresOne.putDataIntoList(userInputToChooseAttributeOfElement);
+		List<String> listOfElementNames = placeElementsIntoDataStructures.putDataIntoList(2);
+		List<String> listOfElementsAttributesTheUserChooses = placeElementsIntoDataStructures.putDataIntoList(userInputToChooseAttributeOfElement);
 		
 		//Add elements data to a map and then print out the data. Key: Element name and Value: User chooses
 		System.out.println("");
-		Map<String, String> mapOfListedData = placeElementsIntoDataStructuresOne.putTwoListsIntoMap(listOfElementNames, listOfElementsAttributesTheUserChooses);
+		Map<String, String> mapOfListedData = placeElementsIntoDataStructures.putTwoListsIntoMap(listOfElementNames, listOfElementsAttributesTheUserChooses);
 		mapOfListedData.forEach((key, value) -> {
 			LOGGER.info(" Element: " + key + " : Attribute value: " + value);
 		});
 		
+		System.out.println("");
+	}
+	
+	// Print element row with all it's attributes by searching for the elements symbol
+	private static void getRowOfElementData(ReadingElementsFromFile readingElementsFromFile)
+	{
+		LOGGER.info("+getRowOfElementData(ReadingElementsFromFile readingElementsFromFile)");
+		System.out.println("");
+		System.out.println("Enter Symbol initials of element for row: ");
+		String elementSymbol = SCANNER.next();
+		
+		System.out.println("");
+		LOGGER.info(" *** Periodic elements data *** ");
+		PlaceElementsIntoDataStructures placeElementsIntoDataStructures = new PlaceElementsIntoDataStructures(readingElementsFromFile.readOneRowOfElementDataFromFile(elementSymbol));
+
 		// Get name of elements and one column of data from user input choice and no need to format by removing comma
 		System.out.println("");
-//		placeElementsIntoDataStructuresTwo.getReadingElementsFromFileList().forEach(System.out::println);
-		placeElementsIntoDataStructuresTwo.getReadingElementsFromFileList().forEach(myPojo -> LOGGER.info(myPojo.toString()));
+//	    placeElementsIntoDataStructuresTwo.getReadingElementsFromFileList().forEach(System.out::println);
+		placeElementsIntoDataStructures.getReadingElementsFromFileList().forEach(myPojo -> LOGGER.info(myPojo.toString()));
+		
+		System.out.println("");
 	}
 	
 	// Method to ask the user if they want to try the application again.
 	private static void askToContinue()
 	{
+		LOGGER.info("+askToContinue()");
 		//System.out.println("Do you want to run it again: (y/n)");
 		String s_continue = SCANNER.nextLine();
 		if(s_continue.equalsIgnoreCase("y") || s_continue.equalsIgnoreCase("yes"))

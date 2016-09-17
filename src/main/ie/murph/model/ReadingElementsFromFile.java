@@ -22,7 +22,6 @@ public class ReadingElementsFromFile {
 		LOGGER.info("+readAllElementsFromFile()");
 		try (Stream<String> stream = Files.lines(Paths.get(FILENAME),Charset.defaultCharset())) 
 		{
-            //stream.forEach(System.out::println);
 			return stream
 					.collect(Collectors.toList());
 		} catch (IOException ex) 
@@ -35,15 +34,13 @@ public class ReadingElementsFromFile {
 	
 	public List<String> readOneRowOfElementDataFromFile(String elementsSymbol)
 	{
-		LOGGER.info("+readOneRowOfElementDataFromFile()");
+		LOGGER.info("+readOneRowOfElementDataFromFile(String elementsSymbol)");
 		List<String> list = new ArrayList<>();
 		try (Stream<String> stream = Files.lines(Paths.get(FILENAME),Charset.defaultCharset())) 
 		{
-            //stream.forEach(System.out::println);
 			return stream
 					.filter(line -> line.contains(elementsSymbol))
 					.collect(Collectors.toList());
-			//list.forEach(System.out::println);
 		} catch (IOException ex) 
 		{
 	        System.out.println("");

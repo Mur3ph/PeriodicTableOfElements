@@ -15,12 +15,13 @@ public class PlaceElementsIntoDataStructures {
 	
 	public PlaceElementsIntoDataStructures(List<String> readingElementsFromFileList)
 	{
+		LOGGER.info("+PlaceElementsIntoDataStructures(List<String> readingElementsFromFileList)");
 		this.m_readingElementsFromFileList = readingElementsFromFileList;
 	}
 
 	public List<String> putDataIntoList(int number)
 	{
-		LOGGER.info("+putDataIntoList()");
+		LOGGER.info("+putDataIntoList(int number)");
 		List<String> targetList = new ArrayList<>();
 		List<String> list = m_readingElementsFromFileList;
 		targetList = list.stream()
@@ -40,13 +41,14 @@ public class PlaceElementsIntoDataStructures {
 		targetList = list.stream()
 			    .map(line -> Arrays.asList(line.split(","))) // This without the below line will get all the data in a list of lists
 			    .collect(Collectors.toList());	
-//		list.forEach(System.out::println);
 		return targetList;
 	}
 	
 	// Place data from two lists into a single map, one list for keys and the other for corresponding values. 
 	// Key is the name of the element and Value is the attribute of the element the user wants to view
-	public Map<String, String> putTwoListsIntoMap(List<String> keys, List<String> values) {
+	public Map<String, String> putTwoListsIntoMap(List<String> keys, List<String> values) 
+	{
+		LOGGER.info("+putTwoListsIntoMap(List<String> keys, List<String> values)");
 	    // check preconditions - sizes
 	    Map<String, String> map = new HashMap<>();
 	    for ( int i = 0; i < keys.size(); i++) {
@@ -55,7 +57,9 @@ public class PlaceElementsIntoDataStructures {
 		return map;
 	}
 	
-	public List<String> getReadingElementsFromFileList() {
+	public List<String> getReadingElementsFromFileList() 
+	{
+		LOGGER.info("+getReadingElementsFromFileList()");
 		return m_readingElementsFromFileList;
 	}
 	

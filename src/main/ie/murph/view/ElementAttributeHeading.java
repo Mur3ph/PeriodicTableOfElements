@@ -11,6 +11,7 @@ public class ElementAttributeHeading {
 	//Print headings data from Map to allow user to choose what they want from the periodic table
 	public void getPeriodicTableOfElementsColumnHeadingAttributes()
 	{
+		LOGGER.info("+getPeriodicTableOfElementsColumnHeadingAttributes()");
 		Map<Integer, String> elements = new HashMap<Integer, String>();
 		elements.put(0, "Atomic number");
 		elements.put(1, "Element name");
