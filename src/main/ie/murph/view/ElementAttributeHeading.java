@@ -9,7 +9,7 @@ public class ElementAttributeHeading {
 	private static final Logger LOGGER = Logger.getLogger(ElementAttributeHeading.class.getName());
 	
 	//Print headings data from Map to allow user to choose what they want from the periodic table
-	public void getPeriodicTableOfElementsColumnHeadingAttributes()
+	public Map<Integer, String> getPeriodicTableOfElementsColumnHeadingAttributesMap()
 	{
 		LOGGER.info("+getPeriodicTableOfElementsColumnHeadingAttributes()");
 		Map<Integer, String> elements = new HashMap<Integer, String>();
@@ -36,6 +36,6 @@ public class ElementAttributeHeading {
 		System.out.println(" ");
 		LOGGER.info("*** Headings of data ***");
 		System.out.println(" ");
-		elements.forEach((key, value) -> System.out.println(key + " : " + value));
+		return elements;
 	}	
 }

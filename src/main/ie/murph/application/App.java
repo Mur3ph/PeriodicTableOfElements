@@ -33,7 +33,8 @@ public class App {
 		LOGGER.info("+run()");
 		//Print headings data from Map to allow user to choose what they want from the periodic table
 		ElementAttributeHeading elementAttributeHeading = new ElementAttributeHeading();
-		elementAttributeHeading.getPeriodicTableOfElementsColumnHeadingAttributes();
+		Map<Integer, String> elements = elementAttributeHeading.getPeriodicTableOfElementsColumnHeadingAttributesMap();
+		elements.forEach((key, value) -> System.out.println(key + " : " + value));
 		
 		ReadingElementsFromFile readingElementsFromFile = new ReadingElementsFromFile();
 		
