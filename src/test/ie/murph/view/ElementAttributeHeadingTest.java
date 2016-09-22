@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.junit.After;
 import org.junit.Before;
@@ -16,6 +17,7 @@ import main.ie.murph.view.ElementAttributeHeading;
 
 public class ElementAttributeHeadingTest {
 
+	private static final Logger LOGGER = Logger.getLogger(ElementAttributeHeading.class.getName());
 	private int _valueOne;
 	private int _valueTwo;
 	private int _sum;
@@ -49,8 +51,10 @@ public class ElementAttributeHeadingTest {
 	}
 	
 	@Test
-	public void getPeriodicTableOfElementsColumnHeadingAttributes()
+	public void getPeriodicTableOfElementsColumnHeadingAttributesTest()
 	{
+		LOGGER.info("+getPeriodicTableOfElementsColumnHeadingAttributesTest()");
+		
 		ElementAttributeHeading elementAttributeHeading = new ElementAttributeHeading();
 		Map<Integer, String> elements = elementAttributeHeading.getPeriodicTableOfElementsColumnHeadingAttributesMap();
 		
@@ -95,5 +99,9 @@ public class ElementAttributeHeadingTest {
 		elements.remove(18);
 		assertEquals(null, elements.get(18));
 		
+		// 6). Testing to see if a certain key has a value in it
+		assertTrue(elements.containsKey(17) && elements.get(17)!= null);
+		assertTrue(elements.containsKey(17));
+		assertNotNull(elements.get(17));
 	}	
 }
