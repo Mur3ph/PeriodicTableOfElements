@@ -35,18 +35,23 @@ public class ReadingElementsFromFile {
 	public List<String> readOneRowOfElementDataFromFile(String elementsSymbol)
 	{
 		LOGGER.info("+readOneRowOfElementDataFromFile(String elementsSymbol)");
-		List<String> list = new ArrayList<>();
 		try (Stream<String> stream = Files.lines(Paths.get(FILENAME),Charset.defaultCharset())) 
 		{
+//			If I return the first symbol found in certain situations I will never be able to access some Elements (e.g. I - Iodine)
+//			LOGGER.info("*** " + stream.filter(line -> line.substring(line.indexOf(",")+1, line.indexOf(",")+5).trim().contains(elementsSymbol)).findFirst().get());
 			return stream
-					.filter(line -> line.contains(elementsSymbol))
+					.filter(line -> line.substring(line.indexOf(",")+1, line.indexOf(",")+5).trim().contains(elementsSymbol))
 					.collect(Collectors.toList());
-		} catch (IOException ex) 
+		} 
+		catch (IOException ex) 
 		{
 	        System.out.println("");
 	        LOGGER.warning("Error: " + ex.getMessage() + " +readAllElementsFromFile()");
 		}
-		return list; 
+		return new ArrayList<String>(); 
 	}
+
+	
+	
 	
 }

@@ -38,8 +38,10 @@ public class App {
 		
 		ReadingElementsFromFile readingElementsFromFile = new ReadingElementsFromFile();
 		
+		System.out.println("");
 		getColumnOfElementsAttributes(readingElementsFromFile);
 		
+		System.out.println("");
 		getRowOfElementData(readingElementsFromFile);
 		
 		System.out.println("");
@@ -66,6 +68,7 @@ public class App {
 		System.out.println("");
 		Map<String, String> mapOfListedData = placeElementsIntoDataStructures.putTwoListsIntoMap(listOfElementNames, listOfElementsAttributesTheUserChooses);
 		mapOfListedData.forEach((key, value) -> {
+			System.out.println("");
 			LOGGER.info(" Element: " + key + " : Attribute value: " + value);
 		});
 		
@@ -87,7 +90,7 @@ public class App {
 		// Get name of elements and one column of data from user input choice and no need to format by removing comma
 		System.out.println("");
 //	    placeElementsIntoDataStructuresTwo.getReadingElementsFromFileList().forEach(System.out::println);
-		placeElementsIntoDataStructures.getReadingElementsFromFileList().forEach(myPojo -> LOGGER.info(myPojo.toString()));
+		placeElementsIntoDataStructures.getReadingElementsFromFileList().forEach(myPojo -> LOGGER.info(" " + myPojo.toString() + " "));
 		
 		System.out.println("");
 	}
