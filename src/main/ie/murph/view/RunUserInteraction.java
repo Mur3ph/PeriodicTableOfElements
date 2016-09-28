@@ -8,14 +8,15 @@ import java.util.logging.Logger;
 import main.ie.murph.application.App;
 import main.ie.murph.model.PlaceElementsIntoDataStructures;
 import main.ie.murph.model.ReadingElementsFromFile;
+import main.ie.murph.model.SortListByElementSymbol;
 
-public class RunUserInteraction 
+public class RunUserInteraction implements Runnable
 {
 	private static final Logger LOGGER = Logger.getLogger(App.class.getName());
 	private static final Scanner SCANNER = new Scanner(System.in);
 	
 	//Execute the application
-	public void runUserInteraction()
+	public void run()
 	{
 		LOGGER.info("+run()");
 		//Print headings data from Map to allow user to choose what they want from the periodic table
@@ -32,6 +33,7 @@ public class RunUserInteraction
 		getRowOfElementData(readingElementsFromFile);
 		
 		System.out.println("");
+		getSortedRowOfElementData(readingElementsFromFile);
 	}
 	
 	//Get user input for which column of data they want to view
@@ -67,18 +69,41 @@ public class RunUserInteraction
 	{
 		LOGGER.info("+getRowOfElementData(ReadingElementsFromFile readingElementsFromFile)");
 		System.out.println("");
-		System.out.println("Enter Symbol initials of element for row: ");
+		System.out.println("Enter initials of Symbol element you want to see: ");
 		String elementSymbol = SCANNER.next();
 		
 		System.out.println("");
 		LOGGER.info(" *** Periodic elements data *** ");
 		PlaceElementsIntoDataStructures placeElementsIntoDataStructures = new PlaceElementsIntoDataStructures(readingElementsFromFile.readOneRowOfElementDataFromFile(elementSymbol));
-
+		
 		// Get name of elements and one column of data from user input choice and no need to format by removing comma
 		System.out.println("");
 //	    placeElementsIntoDataStructuresTwo.getReadingElementsFromFileList().forEach(System.out::println);
 		placeElementsIntoDataStructures.getReadingElementsFromFileList().forEach(myPojo -> LOGGER.info(" " + myPojo.toString() + " "));
 		
+		System.out.println("");
+	}
+	
+	public void getSortedRowOfElementData(ReadingElementsFromFile readingElementsFromFile)
+	{
+		//TEST SortListByElementSymbol()
+		LOGGER.info("+getSortedRowOfElementData(ReadingElementsFromFile readingElementsFromFile)");
+		System.out.println("");
+		System.out.println("TEST - Enter Symbol initials of element for row AGAIN: ");
+		String elementSymbol = SCANNER.next();
+		
+		System.out.println("");
+		LOGGER.info(" *** Periodic elements data *** ");
+		PlaceElementsIntoDataStructures placeElementsIntoDataStructures = new PlaceElementsIntoDataStructures(readingElementsFromFile.readOneRowOfElementDataFromFile(elementSymbol));
+		
+		System.out.println("");
+		System.out.println("*** TEST SortListByElementSymbol() ***");
+		SortListByElementSymbol sortListByElementSymbol = new SortListByElementSymbol(elementSymbol, placeElementsIntoDataStructures.getReadingElementsFromFileList());
+		sortListByElementSymbol.refineList();
+		if(sortListByElementSymbol.getSortedList() != null)
+		{
+			sortListByElementSymbol.getSortedList().forEach(myPojo -> LOGGER.info(" " + myPojo.toString() + " "));
+		}
 		System.out.println("");
 	}
 }

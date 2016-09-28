@@ -25,8 +25,8 @@ public class PlaceElementsIntoDataStructures {
 		List<String> targetList = new ArrayList<>();
 		List<String> list = m_readingElementsFromFileList;
 		targetList = list.stream()
-			    .map(line -> Arrays.asList(line.split(","))) // This without the below line will get all the data in a list of lists
-			    .map(lists -> {String userChoosesData=lists.get(number).trim();//This gets a certain data in whatever position we want 
+			    .map(line -> Arrays.asList(line.split(",")))                    // This without the below line will get all the data in a list of lists
+			    .map(lists -> {String userChoosesData=lists.get(number).trim(); //This gets a certain data in whatever position we want 
 			    return userChoosesData;}) 
 			    .collect(Collectors.toList());	
 		return targetList;

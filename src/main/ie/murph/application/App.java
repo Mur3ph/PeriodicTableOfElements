@@ -16,12 +16,20 @@ public class App {
 		LOGGER.info("+main()");
 		
 		//Execute the application
-		runUserInteraction.runUserInteraction();
+		runUserInteraction.run();
+		//thread(new RunUserInteraction(), false);
 		
 		//Ask user to Run the search application again ?
 		askToContinue();
 		
 		System.exit(0);
+	}
+	
+	public static void thread(Runnable runnable, boolean daemon)
+	{
+		Thread brokerThread = new Thread(runnable);
+		brokerThread.setDaemon(daemon);
+		brokerThread.start();
 	}
 	
 	// Method to ask the user if they want to try the application again.
