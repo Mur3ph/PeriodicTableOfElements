@@ -21,15 +21,17 @@ public class SortListByElementSymbol
 	
 	public void refineList()
 	{
-		try{
-			//Just revert back to finding a string in a list loop old skool :)
+		try
+		{
+			//Just revert back to finding a string in a list loop old school :)
 			m_changedList = this.m_currentList.stream()
 					.filter(line -> line.substring(line.indexOf(","), line.indexOf(",")+this.m_sizeOfSymbol).trim().contains(this.m_elementSymbol))
 					.collect(Collectors.toList());
 		}
-		catch(Exception x)
+		catch(Exception e)
 		{
-			LOGGER.warning("+refineList() " + x.getMessage());
+			LOGGER.warning("+refineList() Message: " + e.getMessage() + "Hash code: " + e.hashCode());
+			e.printStackTrace();
 		}
 		
 	}
