@@ -17,7 +17,7 @@ public class App {
 		
 		//Execute the application
 		runUserInteraction.run();
-		//thread(new RunUserInteraction(), false);
+//		thread(new RunUserInteraction(), false);
 		
 		//Ask user to Run the search application again ?
 		askToContinue();

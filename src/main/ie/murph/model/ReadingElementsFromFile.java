@@ -32,22 +32,24 @@ public class ReadingElementsFromFile {
 		return null;
 	}
 	
-	public List<String> readOneRowOfElementDataFromFile(String elementsSymbol)
+	public List<String> readOneRowOfElementDataFromFile(String elementSymbol)
 	{
-		LOGGER.info("+readOneRowOfElementDataFromFile(String elementsSymbol)");
-//		int sizeOfSymbol = elementsSymbol.length()+1;
+		LOGGER.info("+readOneRowOfElementDataFromFile(String elementSymbol)");
+		String paddedEmentSymbol = " " + elementSymbol + " ";
 		try (Stream<String> stream = Files.lines(Paths.get(FILENAME),Charset.defaultCharset())) 
 		{
 //			If I return the first symbol found in certain situations I will never be able to access some Elements (e.g. I - Iodine)
 //			LOGGER.info("*** " + stream.filter(line -> line.substring(line.indexOf(",")+1, line.indexOf(",")+5).trim().contains(elementsSymbol)).findFirst().get());
 			return stream
-					.filter(line -> line.substring(line.indexOf(",")+1, line.indexOf(",")+5).contains(elementsSymbol))
+					.filter(line -> line.contains(paddedEmentSymbol))
+//					.filter(line -> line.substring(line.indexOf(",")+1, line.indexOf(",")+5).contains(paddedelEmentSymbol))
 					.collect(Collectors.toList());
 		} 
 		catch (IOException ex) 
 		{
 	        System.out.println("");
-	        LOGGER.warning("Error: " + ex.getMessage() + " +readAllElementsFromFile()");
+	        LOGGER.warning("+readAllElementsFromFile() Message: " + ex.getMessage() + "Hash code: " + ex.hashCode());
+			ex.printStackTrace();
 		}
 		return new ArrayList<String>(); 
 	}
